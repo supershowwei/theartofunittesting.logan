@@ -97,7 +97,7 @@ namespace LogAn.UnitTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "filename has to be provided")]
+        [ExpectedException(typeof(ArgumentException))]
         public void IsValidLogFileName_EmptyFileName_ThrowsException()
         {
             this.analyzer.IsValidLogFileName(string.Empty);
