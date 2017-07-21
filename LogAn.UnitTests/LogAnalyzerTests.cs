@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LogAn.UnitTests
 {
@@ -92,6 +93,13 @@ namespace LogAn.UnitTests
             bool actual = this.analyzer.IsValidLogFileName("whatever.SLF");
 
             Assert.IsTrue(actual, "filename should be valid!");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "filename has to be provided")]
+        public void IsValidLogFileName_EmptyFileName_ThrowsException()
+        {
+            this.analyzer.IsValidLogFileName(string.Empty);
         }
 
         [TestCleanup]
