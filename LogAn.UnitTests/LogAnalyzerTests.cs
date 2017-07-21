@@ -121,6 +121,12 @@ namespace LogAn.UnitTests
             }
         }
 
+        [TestMethod]
+        [Ignore]
+        public void IsValidLogFileName_ValidFile_ReturnsTrue()
+        {
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
