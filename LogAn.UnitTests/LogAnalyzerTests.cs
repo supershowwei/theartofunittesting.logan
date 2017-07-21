@@ -102,6 +102,25 @@ namespace LogAn.UnitTests
             this.analyzer.IsValidLogFileName(string.Empty);
         }
 
+        [TestMethod]
+        public void IsValidLogFileName_EmptyFileName_Throws()
+        {
+            try
+            {
+                this.analyzer.IsValidLogFileName(string.Empty);
+
+                Assert.Fail("An exception should have been thrown");
+            }
+            catch (ArgumentException argumentException)
+            {
+                Assert.AreEqual("filename has to be provided", argumentException.Message);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Unexpected exception of type {0} caught: {1}", ex.GetType(), ex.Message);
+            }
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
