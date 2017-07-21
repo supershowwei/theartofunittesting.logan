@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LogAn.UnitTests
@@ -125,6 +126,14 @@ namespace LogAn.UnitTests
         [Ignore]
         public void IsValidLogFileName_ValidFile_ReturnsTrue()
         {
+        }
+
+        [TestMethod]
+        public void IsValidLogFileName_EmptyFileName_ThrowsFluent()
+        {
+            Action act = () => this.analyzer.IsValidLogFileName(string.Empty);
+
+            act.ShouldThrow<ArgumentException>().WithMessage("filename has to be provided");
         }
 
         [TestCleanup]
