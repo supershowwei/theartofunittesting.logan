@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FileNames>
+  <FileName>
+    <Data>filewithgoodextension.SLF</Data>
+    <Expected>True</Expected>
+  </FileName>
+  <FileName>
+    <Data>filewithgoodextension.slf</Data>
+    <Expected>True</Expected>
+  </FileName>
+  <FileName>
+    <Data>filewithgoodextension.foo</Data>
+    <Expected>False</Expected>
+  </FileName>
+</FileNames>

@@ -50,9 +50,24 @@ namespace LogAn.UnitTests
         {
             var analyzer = new LogAnalyzer();
 
-            var actual = analyzer.IsValidLogFileName((string)this.TestContext.DataRow[0]);
+            var actual = analyzer.IsValidLogFileName(this.TestContext.DataRow[0].ToString());
 
             Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"TestSamples\FileNames2.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\FileNames2.xml", "FileName",
+            DataAccessMethod.Sequential)]
+        public void IsValidLogFileName_VariousExtensions_ChecksThem()
+        {
+            LogAnalyzer analyzer = new LogAnalyzer();
+            var file = this.TestContext.DataRow["Data"].ToString();
+            var expected = bool.Parse(this.TestContext.DataRow["Expected"].ToString());
+
+            bool actual = analyzer.IsValidLogFileName(file);
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }
