@@ -25,5 +25,15 @@ namespace LogAn.UnitTests
 
             Assert.IsTrue(actual);
         }
+
+        [TestMethod]
+        public void IsValidLogFileName_GoodExtensionUppercase_ReturnsTrue()
+        {
+            LogAnalyzer analyzer = new LogAnalyzer();
+
+            bool actual = analyzer.IsValidLogFileName("filewithgoodextension.SLF");
+
+            Assert.IsTrue(actual);
+        }
     }
 }
