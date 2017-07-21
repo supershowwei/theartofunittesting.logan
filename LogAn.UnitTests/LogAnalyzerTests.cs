@@ -137,6 +137,14 @@ namespace LogAn.UnitTests
             act.ShouldThrow<ArgumentException>().WithMessage("filename has to be provided");
         }
 
+        [TestMethod]
+        public void IsValidLogFileName_WhenCalled_ChangesWasLastFileNameValid()
+        {
+            this.analyzer.IsValidLogFileName("badname.foo");
+
+            Assert.IsFalse(this.analyzer.WasLastFileNameValid);
+        }
+
         [TestCleanup]
         public void TestCleanup()
         {
