@@ -1,17 +1,23 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LogAn.UnitTests
 {
     [TestClass]
     public class LogAnalyzerTests
     {
+        public LogAnalyzerTests()
+        {
+            this.TestContext = null;
+        }
+
+        public TestContext TestContext { get; set; }
+
         [TestMethod]
         public void IsValidLogFileName_BadExtension_ReturnFalse()
         {
-            LogAnalyzer analyzer = new LogAnalyzer();
+            var analyzer = new LogAnalyzer();
 
-            bool actual = analyzer.IsValidLogFileName("filewithbadextension.foo");
+            var actual = analyzer.IsValidLogFileName("filewithbadextension.foo");
 
             Assert.IsFalse(actual);
         }
@@ -19,9 +25,9 @@ namespace LogAn.UnitTests
         [TestMethod]
         public void IsValidLogFileName_GoodExtensionLowercase_ReturnsTrue()
         {
-            LogAnalyzer analyzer = new LogAnalyzer();
+            var analyzer = new LogAnalyzer();
 
-            bool actual = analyzer.IsValidLogFileName("filewithgoodextension.slf");
+            var actual = analyzer.IsValidLogFileName("filewithgoodextension.slf");
 
             Assert.IsTrue(actual);
         }
@@ -29,9 +35,22 @@ namespace LogAn.UnitTests
         [TestMethod]
         public void IsValidLogFileName_GoodExtensionUppercase_ReturnsTrue()
         {
-            LogAnalyzer analyzer = new LogAnalyzer();
+            var analyzer = new LogAnalyzer();
 
-            bool actual = analyzer.IsValidLogFileName("filewithgoodextension.SLF");
+            var actual = analyzer.IsValidLogFileName("filewithgoodextension.SLF");
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"TestSamples\FileNames.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML", @"|DataDirectory|\FileNames.xml", "FileName",
+            DataAccessMethod.Sequential)]
+        public void IsValidLogFileName_ValidExtensions_ReturnsTrue()
+        {
+            var analyzer = new LogAnalyzer();
+
+            var actual = analyzer.IsValidLogFileName((string)this.TestContext.DataRow[0]);
 
             Assert.IsTrue(actual);
         }
