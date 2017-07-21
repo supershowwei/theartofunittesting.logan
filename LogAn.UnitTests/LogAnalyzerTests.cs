@@ -124,6 +124,7 @@ namespace LogAn.UnitTests
 
         [TestMethod]
         [Ignore]
+        [TestCategory("Fast Tests")]
         public void IsValidLogFileName_ValidFile_ReturnsTrue()
         {
         }
